@@ -55,7 +55,7 @@ function createBgCanvas(canvas, player) {
     };
     const numOfSegments = 7;
 
-    if (true || force || !equals(state, newState)) {
+    if (force || !equals(state, newState)) {
       const { offsetWidth: width, offsetHeight: height } = context.canvas;
       const { dy, amplitude, frequency } = newState;
       context.clearRect(0, 0, width, height);
