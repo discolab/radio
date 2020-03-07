@@ -1,5 +1,5 @@
-const streamUrl = 'http://rosetta.whatbox.ca:16896/sasha-today-320.mp3';
-const statusUrl = 'http://rosetta.whatbox.ca:16896/status-json.xsl';
+const streamUrl = 'http://saturn.whatbox.ca:16896/sasha-today-320.mp3';
+const statusUrl = 'http://saturn.whatbox.ca:16896/status-json.xsl';
 
 const player = createAudioPlayer(
   window.chrome ? createMediaSource(streamUrl) : streamUrl,
