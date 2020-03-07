@@ -1,4 +1,4 @@
-function createAudioPlayer(src, onStateChange) {
+function createAudioPlayer(streamUrl, onStateChange) {
   let audio;
   let analyser;
 
@@ -13,7 +13,7 @@ function createAudioPlayer(src, onStateChange) {
 
   function play() {
     audio = new Audio();
-    audio.src = src;
+    audio.src = createMediaSource(streamUrl);
     audio.play();
     analyser = new SpectrumAnalyzer(4096 * 2, 0.7);
     analyser.setSource(audio);
