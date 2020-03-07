@@ -18,7 +18,7 @@ function createMediaSource(streamUrl, mimeType = 'audio/mpeg') {
 
   function onSourceClose() {
     buffer = null;
-    abort();
+    if (abort) abort();
     abort = null;
   }
 
