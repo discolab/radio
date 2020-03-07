@@ -20,6 +20,7 @@ function createMediaSource(streamUrl, mimeType = 'audio/mpeg') {
     buffer = null;
     if (abort) abort();
     abort = null;
+    queue.length = 0;
   }
 
   function appendBuffer(data) {
