@@ -15,8 +15,8 @@ function createAudioPlayer(streamUrl, onStateChange) {
     audio = new Audio();
     audio.src = createMediaSource(streamUrl);
     audio.play();
-    analyser = new SpectrumAnalyzer(4096 * 2, 0.7);
-    analyser.setSource(audio);
+    // analyser = new SpectrumAnalyzer(4096 * 2, 0.7);
+    // analyser.setSource(audio);
   }
 
   function pause() {
