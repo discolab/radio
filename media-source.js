@@ -42,7 +42,7 @@ function createMediaSource(streamUrl, mimeType) {
       .then(({ body }) => {
         return body.pipeTo(new WritableStream({ write: appendBuffer }))
       })
-      .catch((e) => console.log('fetching was stopped'));
+      .catch((e) => console.log('fetching was stopped', e.toString()));
 
     return () => {
       if (!controller.signal.aborted) {
