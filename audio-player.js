@@ -1,6 +1,7 @@
 function createAudioPlayer(streamUrl, onStateChange) {
   let audio;
   let analyser;
+  const mimeType = 'audio/mpeg';
 
   function toggle() {
     if (isPlaying()) {
@@ -13,7 +14,7 @@ function createAudioPlayer(streamUrl, onStateChange) {
 
   function play() {
     audio = new Audio();
-    audio.src = createMediaSource(streamUrl);
+    audio.src = MediaSource.isTypeSupported(mimeType) ? createMediaSource(streamUrl, mimeType) : streamUrl;
     audio.play();
     // analyser = new SpectrumAnalyzer(4096 * 2, 0.7);
     // analyser.setSource(audio);

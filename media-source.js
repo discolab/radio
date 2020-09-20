@@ -1,4 +1,4 @@
-function createMediaSource(streamUrl, mimeType = 'audio/mpeg') {
+function createMediaSource(streamUrl, mimeType) {
   let abort;
   let buffer;
 
