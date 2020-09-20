@@ -11,7 +11,7 @@ function createMediaSource(streamUrl, mimeType) {
   return URL.createObjectURL(source);
 
   function onSourceOpen() {
-    abort = fetchStream(streamUrl);
+    abort = fetchStream(streamUrl, appendBuffer);
     buffer = source.addSourceBuffer(mimeType);
     buffer.addEventListener('updateend', () => appendBuffer());
   }
@@ -33,21 +33,5 @@ function createMediaSource(streamUrl, mimeType) {
     if (!buffer.updating && queue.length) {
       buffer.appendBuffer(queue.shift());
     }
-  }
-
-  function fetchStream() {
-    const controller = new AbortController();
-
-    fetch(streamUrl, { signal: controller.signal })
-      .then(({ body }) => {
-        return body.pipeTo(new WritableStream({ write: appendBuffer }))
-      })
-      .catch((e) => console.log('fetching was stopped', e.toString()));
-
-    return () => {
-      if (!controller.signal.aborted) {
-        controller.abort();
-      }
-    };
   }
 }
