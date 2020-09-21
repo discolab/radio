@@ -36,7 +36,7 @@ function pollStatus() {
 function fetchStatus() {
   return fetch(statusUrl)
     .then((resp) => resp.json())
-    .then((resp) => resp.icestats.source.title)
+    .then((resp) => he.decode(resp.icestats.source.title))
     .then((title) => updateState({ title }));
 }
 
