@@ -2,11 +2,11 @@ import {createAudioPlayer} from "./audio-player.js";
 import {createBgCanvas} from "./bg.js";
 
 
-const streamUrl = 'http://saturn.whatbox.ca:16896/sasha-today-320.mp3';
-const statusUrl = 'http://saturn.whatbox.ca:16896/status-json.xsl';
+const streamUrl = 'aHR0cDovL3NhdHVybi53aGF0Ym94LmNhOjE2ODk2L3Nhc2hhLXRvZGF5LTMyMC5tcDM=';
+const statusUrl = 'aHR0cDovL3NhdHVybi53aGF0Ym94LmNhOjE2ODk2L3N0YXR1cy1qc29uLnhzbA==';
 
 const player = createAudioPlayer(
-  streamUrl,
+  atob(streamUrl),
   isPlaying => updateState({ isPlaying })
 );
 
@@ -38,7 +38,7 @@ function pollStatus() {
 }
 
 function fetchStatus() {
-  return fetch(statusUrl)
+  return fetch(atob(statusUrl))
     .then((resp) => resp.json())
     .then((resp) => he.decode(resp.icestats.source.title))
     .then((title) => updateState({ title }));
