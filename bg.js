@@ -1,3 +1,9 @@
+import { createAnimatedValue, createAnimationSequence } from "./animated-value.js";
+
+export {
+  createBgCanvas
+}
+
 function setupCanvas(canvas) {
   const context = canvas.getContext('2d');
   const dpr = window.devicePixelRatio;

@@ -4,35 +4,35 @@
 // https://noisehack.com/build-music-visualizer-web-audio-api/
 // https://www.twilio.com/blog/audio-visualisation-web-audio-api--react
 
-function SpectrumAnalyzer(binCount, smoothingTimeConstant) {
-  this.binCount = binCount;
-  this.timeByteData = new Uint8Array(binCount);		// waveform
-  this.frequencyByteData = new Uint8Array(binCount); 	// frequency
+export default class SpectrumAnalyzer {
+  constructor (binCount, smoothingTimeConstant) {
+    this.binCount = binCount;
+    this.timeByteData = new Uint8Array(binCount);		// waveform
+    this.frequencyByteData = new Uint8Array(binCount); 	// frequency
 
-  this.context = new AudioContext();
+    this.context = new AudioContext();
 
-  this.analyzerNode = this.context.createAnalyser();
-  this.analyzerNode.fftSize = binCount * 2;
-  this.analyzerNode.smoothingTimeConstant = smoothingTimeConstant;
-}
+    this.analyzerNode = this.context.createAnalyser();
+    this.analyzerNode.fftSize = binCount * 2;
+    this.analyzerNode.smoothingTimeConstant = smoothingTimeConstant;
+  }
 
-SpectrumAnalyzer.prototype = {
-  setSource: function (source) {
+  setSource(source) {
     this.source = this.context.createMediaElementSource(source);
     this.source.connect(this.analyzerNode);
     this.analyzerNode.connect(this.context.destination);
-  },
+  }
 
-  getFrequencyData: function () {
+  getFrequencyData() {
     return this.frequencyByteData;
-  },
+  }
 
-  getTimeData: function () {
+  getTimeData() {
     return this.timeByteData;
-  },
+  }
 
   // not save if out of bounds
-  getAverage: function (index, count) {
+  getAverage(index, count) {
     var total = 0;
     var start = index || 0;
     var end = start + (count || this.binCount);
@@ -42,10 +42,10 @@ SpectrumAnalyzer.prototype = {
     }
 
     return total / (end - start);
-  },
+  }
 
-  updateSample: function () {
+  updateSample() {
     this.analyzerNode.getByteFrequencyData(this.frequencyByteData);
     this.analyzerNode.getByteTimeDomainData(this.timeByteData);
   }
-};
+}

@@ -1,3 +1,10 @@
+import {createMediaSource} from "./media-source.js";
+import SpectrumAnalyzer from "./analyser.js";
+
+export {
+  createAudioPlayer
+}
+
 function createAudioPlayer(streamUrl, onStateChange) {
   let audio;
   let analyser;

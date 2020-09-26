@@ -1,3 +1,9 @@
+import { fetchStream } from "./fetch-stream.js";
+
+export {
+  createMediaSource
+}
+
 function createMediaSource(streamUrl, mimeType) {
   let abort;
   let buffer;

@@ -1,3 +1,7 @@
+import {createAudioPlayer} from "./audio-player.js";
+import {createBgCanvas} from "./bg.js";
+
+
 const streamUrl = 'http://saturn.whatbox.ca:16896/sasha-today-320.mp3';
 const statusUrl = 'http://saturn.whatbox.ca:16896/status-json.xsl';
 

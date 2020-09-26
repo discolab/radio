@@ -1,3 +1,7 @@
+export {
+  fetchStream
+}
+
 function fetchStream(streamUrl, processChunk) {
   const controller = new AbortController();
 

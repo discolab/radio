@@ -1,3 +1,8 @@
+export {
+  createAnimatedValue,
+  createAnimationSequence
+}
+
 function seq(promiseFns) {
   return promiseFns.reduce((chain, fn) => {
     return chain.then(
