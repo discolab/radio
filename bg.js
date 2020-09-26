@@ -37,7 +37,7 @@ function createBgCanvas(canvas, player) {
     frequency: null,
   };
 
-  const yAnim = createAnimatedValue();
+  const yAnim = createAnimatedValue({ duration: 300 });
   const ampAnim = createAnimatedValue({ duration: 500 });
 
   const animSeq = createAnimationSequence([
@@ -56,10 +56,10 @@ function createBgCanvas(canvas, player) {
 
     const newState = {
       dy: yAnim.val(),
-      amplitude: ampAnim.val() * (player.getAnalyser() ? player.getAnalyser().getAverage() : 1),
+      amplitude: ampAnim.val() * (player.getAnalyser() ? player.getAnalyser().getAverage() : 10),
       frequency: 24
     };
-    const numOfSegments = 7;
+    const numOfSegments = Math.floor(window.innerHeight / 100);
 
     if (force || !equals(state, newState)) {
       const { offsetWidth: width, offsetHeight: height } = context.canvas;
